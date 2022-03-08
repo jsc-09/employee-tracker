@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const { addRole } = require('./db');
 const db = require('./db')
 
+//Create Main Menu Table
 async function mainMenu() {
     const { selection } = await inquirer.prompt([
         {
@@ -38,24 +39,28 @@ async function mainMenu() {
 
 }
 
+//Create All Departments Table
 async function viewAllDepartments() {
     const [departments] = await db.viewAllDepartments();
     console.table(departments);
     mainMenu()
 };
 
+//Create All Roles Table
 async function viewAllRoles() {
     const [roles] = await db.viewAllRoles();
     console.table(roles);
     mainMenu()
 }
 
+//Creat all Employees table
 async function viewAllEmployees() {
     const [employees] = await db.viewAllEmployees();
     console.table(employees);
     mainMenu()
 }
 
+//Add Department to db
 async function addDepartment() {
     const department = await inquirer.prompt([
         {
@@ -70,6 +75,7 @@ async function addDepartment() {
     mainMenu()
 };
 
+//Add Roles to db
 async function addRoles() {
     const deptChoices = await db.viewAllDepartments();
    // console.log(deptChoices[0])
@@ -100,6 +106,7 @@ async function addRoles() {
     mainMenu()
 };
 
+//Add Employee to db
 async function addEmployee() {
     const roleChoices = await db.viewAllRoles();
 
@@ -144,6 +151,7 @@ async function addEmployee() {
     mainMenu()
 }
 
+//update employee role
 async function updateRole() {
     const [employeeChoices] = await db.viewAllEmployees();
     const employee = employeeChoices.map(({id, first_name, last_name}) => ({
