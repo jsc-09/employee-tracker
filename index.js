@@ -96,10 +96,7 @@ async function addRoles() {
             choices: dept
         }
     ])
-
-    console.log(role)
     await db.addRoles(role);
-
     mainMenu()
 };
 
@@ -143,8 +140,6 @@ async function addEmployee() {
             choices: managers,
         },
     ]);
-
-    console.log(employee)
     await db.addEmployee(employee);
     mainMenu()
 }
@@ -177,8 +172,6 @@ async function updateRole() {
             choices: roles
         }
     ]);
-    console.log(`role_id: ${role_id}`);
-    console.log(`employee_id: ${employee_id}`);
     await db.updateRole(employee_id, role_id);
     mainMenu()
 }
